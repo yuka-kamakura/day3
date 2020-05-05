@@ -5,6 +5,7 @@
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/0.9.0/p5.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/0.9.0/addons/p5.dom.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/0.9.0/p5.min.js"></script>
     <script
       src="https://unpkg.com/ml5@latest/dist/ml5.min.js"
       type="text/javascript"
@@ -16,6 +17,17 @@
       let video;
       let poseNet;
       let poses = [];
+
+      let img;
+      let imgX = nosePos.x-50;
+      let imgY = nosePos.y-280;
+
+
+      // 一番最初に実行される(同期処理が可能)
+      function preload() {
+        // 画像をロード
+        img = loadImage("shoes_17.png");
+      }
 
       function setup() {
         createCanvas(640, 480);
@@ -50,10 +62,15 @@
         console.log("鼻のy座標=" + nosePos.y);
 
         // 試しに赤鼻に
-        //fill("#ff0000");
-        //ellipse(nosePos.x, nosePos.y, 50, 50);
-        
+        fill("#ff0000");
+        ellipse(nosePos.x, nosePos.y, 50, 50);
+
+        // 画像を描画
+        image(img, nosePos.x-50, nosePos.y-280, 100, 100);
+
       }
+
+     
 
       function getPartsPosition(partsName) {
         if (poses[0])
@@ -63,31 +80,6 @@
 
         return { x: 0, y: 0 };
       }
-
-      let img;
-      let imgX = ("鼻のx座標=" + nosePos.x);
-      let imgY = ("鼻のy座標=" + nosePos.y);
-
-
-      // 一番最初に実行される(同期処理が可能)
-      function preload() {
-        // 画像をロード
-        img = loadImage("shoes_17.png");
-      }
-
-      // 二番目に実行される
-      function setup() {
-        createCanvas(640, 1000);
-      }
-
-      // preload,setupが終わったら繰り返し実行される
-      function draw() {
-
-
-        // 画像を描画
-      
-      }
-
     </script>
   </body>
 </html>
