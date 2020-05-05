@@ -19,14 +19,16 @@
       let poses = [];
 
       let img;
-      let imgX = rightShoulderPos.x-650;
-      let imgY = rightShoulderPos.y-120;
+      let imgX = rightShoulderPos.x-260;
+      let imgY = rightShoulderPos.y-330;
 
 
       // 一番最初に実行される(同期処理が可能)
       function preload() {
         // 画像をロード
-        img = loadImage("kodomofuku_boy.png");
+        img = loadImage("kitsune.png");
+        img2 = loadImage("kodomofuku_boy.png");
+        img3 = loadImage("arm.png");
       }
 
       function setup() {
@@ -56,17 +58,20 @@
         // 鼻の位置を取得
         // 他の部位の名前　https://github.com/tensorflow/tfjs-models/blob/master/posenet/README.md#keypoints
         let rightShoulderPos = getPartsPosition("rightShoulder");
+        let rightElbowPos = getPartsPosition("rightElbow");
 
         // 鼻の座標を取得するときはこんな感じで書きます
         console.log("鼻のx座標=" + rightShoulderPos.x);
         console.log("鼻のy座標=" + rightShoulderPos.y);
 
         // 試しに赤鼻に
-        fill("#ff0000");
-        ellipse(rightShoulderPos.x, rightShoulderPos.y, 50, 50);
+        //fill("#ff0000");
+        //ellipse(rightShoulderPos.x, rightShoulderPos.y, 50, 50);
 
         // 画像を描画
-        image(img, rightShoulderPos.x-650, rightShoulderPos.y-120, 2100, 1800);
+        image(img, rightShoulderPos.x-260, rightShoulderPos.y-310, 800, 600);
+        //image(img2, rightShoulderPos.x-450, rightShoulderPos.y-140, 1200, 800);
+        //image(img3, rightElbowPos.x-190, rightElbowPos.y-500, 870, 600);
 
       }
 
